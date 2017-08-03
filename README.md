@@ -4,7 +4,7 @@
 
 ## Project architecture
 
-We decided to follow and change a little bit of alexnm re-ducks proposal https://github.com/alexnm/re-ducks for the same reasons that made him extend the original reducks proposal.
+We decided to follow and change a little bit of alexnm re-ducks proposal https://github.com/alexnm/re-ducks for the same reasons that made him extend the original ducks proposal.
 
 So we have the following project folder structure:
 ```
