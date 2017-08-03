@@ -13,6 +13,8 @@ containers/
 components/
 ├── Home/
     ├── HomeComponent.jsx
+    ├── HomeComponent.spec.jsx
+    ├── index.js // in this file we're just exporting all Home components
 modules/
 ├── home
     ├── actions.js
@@ -20,7 +22,7 @@ modules/
     ├── operations.js
     ├── reducers.js
     ├── selectors.js
-    ├── tests.js
+    ├── home.spec.js
     ├── types.js
     ├── utils.js
 ```
