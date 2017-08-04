@@ -8,23 +8,46 @@ We decided to follow and change a little bit of alexnm re-ducks proposal https:/
 
 So we have the following project folder structure:
 ```
-containers/
-├── HomeContainer.js
-components/
-├── Home/
-    ├── HomeComponent.jsx
-    ├── HomeComponent.spec.jsx
-    ├── index.js // in this file we're just exporting all Home components
-modules/
-├── home
-    ├── actions.js
-    ├── index.js
-    ├── operations.js
-    ├── reducers.js
-    ├── selectors.js
-    ├── home.spec.js
-    ├── types.js
-    ├── utils.js
+.
+├── .babelrc
+├── .editorconfig
+├── .eslintrc
+├── build/
+├── public/
+├── src/
+│   ├── store/
+│   │   ├── index.js
+│   │   └── rootReducer.js
+│   ├── containers/
+│   │   └── HomeContainer.js
+│   ├── modules/
+│   │   └── auth
+│   │       ├── actions.js
+│   │       ├── index.js
+│   │       ├── operations.js
+│   │       ├── reducers.js
+│   │       ├── selectors.js
+│   │       ├── auth.spec.js
+│   │       ├── types.js
+│   │       └── utils.js
+│   ├── layouts/
+│   │   └── DefaultLayout/
+│   │       └── index.js //ReactRouter.Route Component with Layout
+│   ├── screens/
+│   │   └── Home/
+│   │       ├── index.js
+│   │       ├── HomeScreen.jsx
+│   │       └── HomeScreen.spec.jsx
+│   └── components/
+│       └── ModalButton/
+│           ├── index.js // in this file we're just exporting all ModalButton components
+│           ├── ModalButtonComponent.jsx
+│           └── ModalButtonComponent.spec.jsx
+│   
+└── configs/
+    ├── base.config.js
+    ├── prod.config.js
+    └── dev.config.js
 ```
 NOTE: We're using the modules name instead of ducks just to keep in a more regular pattern
 
