@@ -9,6 +9,7 @@ We decided to follow and change a little bit of alexnm re-ducks proposal https:/
 So we have the following project folder structure:
 ```
 .
+├── .babelrc
 ├── .editorconfig
 ├── .eslintrc
 ├── build/
