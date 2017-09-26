@@ -1,0 +1,16 @@
+body{
+    margin: 0;
+}
+*{
+    box-sizing: border-box;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    color: #282828;
+}
+h1,h2,h3,h4,h5,p{
+    &:first-child{
+        margin-top: 0;
+    }
+    &:last-child{
+        margin-bottom: 0;
+    }
+}
