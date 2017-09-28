@@ -5,6 +5,9 @@ body{
     box-sizing: border-box;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #282828;
+    text-decoration: none;
+    outline: none;
+    list-style-type: none;
 }
 h1,h2,h3,h4,h5,p{
     &:first-child{

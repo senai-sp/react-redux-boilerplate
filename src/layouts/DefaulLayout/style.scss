@@ -1,0 +1,32 @@
+body{
+    padding-top: 80px;
+}
+.container{
+    margin: 0 auto;
+    width: 1140px;
+    padding: 0 15px;
+    max-width: 100%;
+}
+.navbar{
+    background: #ffc246;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    h1{
+        margin: 0;
+    }
+    .container{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}
+.navbar-list{
+    padding: 0;
+    display: flex;
+    a{
+        display: block;
+        padding: 0 10px;
+    }
+}
