@@ -4,10 +4,18 @@ import makeRootReducer from "../reducers/index";
 
 const createStore = (initialState = {}) => {
     const middleware = [thunk];
+
+    let composeEnhancers = compose;
+    if (__DEV__) {
+        if (typeof window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ === 'function') {
+            composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+        }
+    }
+
     const store = createReduxStore(
         makeRootReducer(),
         initialState,
-        compose(
+        composeEnhancers(
             applyMiddleware(...middleware)
         )
     );

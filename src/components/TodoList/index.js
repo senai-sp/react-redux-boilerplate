@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import Todo from "../Todo/index";
+import "./style.scss";
 
 class TodoList extends Component{
     render(){
@@ -6,7 +8,7 @@ class TodoList extends Component{
             <div className="card todolist">
                 <h3>{this.props.title}</h3>
                 <ul>
-                    {this.props.todos.map(todo => <li>{todo.title}</li>)}
+                    {this.props.todos.map( (todo, key) => <Todo {...todo} key={key} />)}
                 </ul>
             </div>
         );

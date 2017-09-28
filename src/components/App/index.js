@@ -5,8 +5,8 @@ import "./style.scss";
 import {BrowserRouter, Switch} from "react-router-dom";
 
 import DefaultLayout from "../../layouts/DefaulLayout/index";
-import TodoListContainer from "../../containers/TodoListContainer";
 import ContactScreen from "../../screens/ContactScreen/index";
+import TodoListScreen from "../../screens/TodoListScreen/index";
 
 
 class App extends Component{
@@ -18,7 +18,7 @@ class App extends Component{
             <Provider store={this.props.store}>
                 <BrowserRouter>
                     <Switch>
-                        <DefaultLayout path="/" exact component={TodoListContainer} />
+                        <DefaultLayout path="/" exact component={TodoListScreen} />
                         <DefaultLayout path="/contact" exact component={ContactScreen} />
                     </Switch>
                 </BrowserRouter>

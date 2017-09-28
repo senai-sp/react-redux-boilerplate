@@ -1,5 +1,5 @@
 import queryString from "query-string";
-const API_URL = (!__PROD__) ? "http://localhost/" : "https://private-f0cf3-tweet.apiary-mock.com/";
+const API_URL = (__PROD__) ? "http://localhost/" : "https://private-f0cf3-tweet.apiary-mock.com/";
 
 const handleErrors = (response) => {
     if (!response.ok) {
@@ -27,7 +27,8 @@ function request( url , method = "GET", body){
 }
 
 export const requestGet = (url, search) => {
-    url = `${API_URL}${url}?${queryString.stringify(search)}`;
+    if (search)
+        url += queryString.stringify(search);
     return request(url, "GET");
 };
 

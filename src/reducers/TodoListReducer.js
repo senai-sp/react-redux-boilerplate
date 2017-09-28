@@ -19,7 +19,6 @@ export function listTodoList () {
                     type    : LIST_TODOLIST,
                     payload : todolists
                 });
-                resolve();
             });
     }
 }
@@ -32,7 +31,6 @@ export function addTodoList (todolist) {
                     type    : ADD_TODOLIST,
                     payload : todolist
                 });
-                resolve();
             });
     }
 }
@@ -45,7 +43,6 @@ export const updateTodoList = (todolist_id, todolist) => {
                     type    : UPDATE_TODOLIST,
                     payload : todolist
                 });
-                resolve();
             });
     }
 };
@@ -58,7 +55,6 @@ export const deleteTodoList = (todolist_id) => {
                     type    : DELETE_TODOLIST,
                     payload : todolist_id
                 });
-                resolve();
             });
     }
 };

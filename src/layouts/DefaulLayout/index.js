@@ -7,11 +7,11 @@ export const DefaultLayout = ({ component: Component, path, exact }) => (
         <div id="app" className="app">
             <header className="navbar">
                 <div className="container">
-                    <h1 className="logo"><a href="#" title="TodoList">TodoList</a></h1>
+                    <h1 className="logo"><Link to="/" title="TodoList">TodoList</Link></h1>
                     <nav>
                         <ul className="navbar-list">
-                            <li><Link to="/">Home</Link></li>
-                            <li><Link to="/contact">Contact</Link></li>
+                            <li><Link to="/" activeClassName="active" >Home</Link></li>
+                            <li><Link to="/contact" activeClassName="active" >Contact</Link></li>
                         </ul>
                     </nav>
                 </div>

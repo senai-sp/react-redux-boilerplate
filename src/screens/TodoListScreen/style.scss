@@ -1,0 +1,10 @@
+.todolist-container{
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    > .todolist{
+        margin: 0 10px 20px 10px;
+        flex-basis: calc(25% - 20px);
+    }
+}
