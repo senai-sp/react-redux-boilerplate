@@ -1,12 +1,17 @@
 // ------------------------------------
 // Constants
 // ------------------------------------
-import {requestDelete, requestGet, requestPost, requestPut} from "../modules/api";
+import { requestDelete, requestGet, requestPost, requestPatch } from "../modules/api";
+import { normalize } from "normalizr";
+import { todolistEntity } from '../modules/entities';
+import {LIST_TODO} from "./TodoReducer";
 
 export const LIST_TODOLIST = 'LIST_TODOLIST';
 export const ADD_TODOLIST = 'ADD_TODOLIST';
 export const UPDATE_TODOLIST = 'UPDATE_TODOLIST';
 export const DELETE_TODOLIST = 'DELETE_TODOLIST';
+
+export const UPDATE_TODO = 'DELETE_TODO';
 
 // ------------------------------------
 // Actions
@@ -15,9 +20,14 @@ export function listTodoList () {
     return (dispatch, getState) => {
         return requestGet(`todolists`)
             .then( todolists => {
+                const entities = normalize(todolists, [ todolistEntity ]).entities;
                 dispatch({
                     type    : LIST_TODOLIST,
-                    payload : todolists
+                    payload : entities.todolists
+                });
+                dispatch({
+                    type    : LIST_TODO,
+                    payload : entities.todos
                 });
             });
     }
@@ -37,7 +47,7 @@ export function addTodoList (todolist) {
 
 export const updateTodoList = (todolist_id, todolist) => {
     return (dispatch, getState) => {
-        return requestPut(`todolists/${todolist_id}`, todolist)
+        return requestPatch(`todolists/${todolist_id}`, todolist)
             .then( todolist => {
                 dispatch({
                     type    : UPDATE_TODOLIST,
@@ -49,7 +59,7 @@ export const updateTodoList = (todolist_id, todolist) => {
 
 export const deleteTodoList = (todolist_id) => {
     return (dispatch, getState) => {
-        return requestDelete(`todolists/${todolist_id}`, todolist)
+        return requestDelete(`todolists/${todolist_id}`)
             .then( todolist => {
                 dispatch({
                     type    : DELETE_TODOLIST,
@@ -71,28 +81,26 @@ export const actions = {
 // Action Handlers
 // ------------------------------------
 const ACTION_HANDLERS = {
-    [LIST_TODOLIST] : (state, action) => {
-        return Object.assign({}, state, {
-            items: action.payload
-        })
+    [LIST_TODOLIST] : (state, {payload}) => {
+        return {
+            ...state,
+            items: payload
+        }
     },
-    [ADD_TODOLIST] : (state, action) => {
-        return Object.assign({}, state, {
-            items: [
-                action.payload,
-                ...state.items
-            ]
-        })
+    [ADD_TODOLIST] : (state, {payload}) => {
+        const newState = Object.assign(state,{});
+        newState[payload.id] = payload;
+        return newState;
     },
-    [UPDATE_TODOLIST] : (state, action) => {
-        return Object.assign({}, state, {
-            items: state.items.map(item => (action.payload.id == item.id )? action.payload : item)
-        })
+    [UPDATE_TODOLIST] : (state, {payload}) => {
+        const newState = Object.assign(state,{});
+        newState[payload.id] = payload;
+        return newState;
     },
-    [DELETE_TODOLIST] : (state, action) => {
-        return Object.assign({}, state, {
-            items: state.items.filter(item => item.id != action.payload)
-        })
+    [DELETE_TODOLIST] : (state, {payload}) => {
+        const newState = Object.assign(state,{});
+        delete newState[payload.id];
+        return newState;
     }
 };
 
@@ -100,8 +108,8 @@ const ACTION_HANDLERS = {
 // Reducer
 // ------------------------------------
 const initialState = {
-    items: [],
-    lastUpdate: null
+    items: {},
+    updatedAt: null
 };
 
 export default function TodoListReducer (state = initialState, action) {

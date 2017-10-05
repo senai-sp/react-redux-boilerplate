@@ -1,5 +1,5 @@
 import React from 'react';
-import {Link, Route} from 'react-router-dom';
+import {NavLink, Route} from 'react-router-dom';
 import "./style.scss";
 
 export const DefaultLayout = ({ component: Component, path, exact }) => (
@@ -7,11 +7,11 @@ export const DefaultLayout = ({ component: Component, path, exact }) => (
         <div id="app" className="app">
             <header className="navbar">
                 <div className="container">
-                    <h1 className="logo"><Link to="/" title="TodoList">TodoList</Link></h1>
+                    <h1 className="logo"><NavLink to="/" title="TodoList">TodoList</NavLink></h1>
                     <nav>
                         <ul className="navbar-list">
-                            <li><Link to="/" activeClassName="active" >Home</Link></li>
-                            <li><Link to="/contact" activeClassName="active" >Contact</Link></li>
+                            <li><NavLink to="/" exact activeClassName="active" >Home</NavLink></li>
+                            <li><NavLink to="/contact" exact activeClassName="active" >Contact</NavLink></li>
                         </ul>
                     </nav>
                 </div>

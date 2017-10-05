@@ -43,3 +43,7 @@ export const requestDelete = (url, data) => {
 export const requestPut = (url, data) => {
     return request(url, "PUT", data);
 };
+
+export const requestPatch = (url, data) => {
+    return request(url, "PATCH", data);
+};

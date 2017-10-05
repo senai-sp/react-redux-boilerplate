@@ -1,14 +1,32 @@
 import React, { Component } from "react";
 import TodoList from "../TodoList/index";
 
+
 class TodoListList extends Component{
     componentDidMount(){
         this.props.listTodoList();
     }
+    onToggleTodo(id, done){
+        console.log(this.props);
+        // this.props.updateTodo(id,!done);
+    }
     renderTodos(){
-        if(this.props.todolists.items.length)
-            return this.props.todolists.items.map( (todo, key) => <TodoList key={key} {...todo} />);
-        return <h1>Loading</h1>
+
+        const todolists = this.props.todolists.items;
+        const todolists_ids = Object.keys(todolists);
+
+        const todos = this.props.todos.items;
+        const todos_ids = Object.keys(todos);
+
+        if(!todolists_ids.length || !todos_ids.length)
+            return <h1>Loading</h1>;
+
+        const todoListsComponents = todolists_ids.map(todolist_id => {
+            const todolist = {...todolists[todolist_id]};
+            todolist.todos = todolist.todos.map( todo_id => todos[todo_id]);
+            return <TodoList onToggleTodo={this.onToggleTodo.bind(this)} key={todolist_id} {...todolist} />
+        });
+        return todoListsComponents;
     }
     render(){
         return(
