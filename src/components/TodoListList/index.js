@@ -6,9 +6,8 @@ class TodoListList extends Component{
     componentDidMount(){
         this.props.listTodoList();
     }
-    onToggleTodo(id, done){
-        console.log(this.props);
-        // this.props.updateTodo(id,!done);
+    onToggleTodo(todo_id, done){
+        this.props.updateTodo(todo_id,{done});
     }
     renderTodos(){
 
